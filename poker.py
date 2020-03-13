@@ -48,7 +48,7 @@ Date: 2020/3/13
 '''
 
 def hand_rank(hand):
-    "Return a value indicating the ranking of a hand."
+    # 评估牌的大小，返回 (优先级, 待比较的牌, 经排序的牌(optional))
     ranks = card_ranks(hand) 
     if straight(ranks) and flush(hand): 
         # 同花顺（顺子+同花）
@@ -80,7 +80,7 @@ def hand_rank(hand):
 
 
 def card_ranks(hand):
-    # 排序
+    # 排序，返回降序的牌对应的数字编号
     ranks = ['--23456789TJQKA'.index(r) for r, s in hand] # -- 起占位作用，使得2的index仍然是2
     ranks.sort(reverse = True)
     return ranks
@@ -99,6 +99,7 @@ def straight(ranks):
 
 def kind(n, ranks):
     # 有n张同样大小的牌片
+    # 如果没有这种牌，返回 None
     for r in ranks:
         if ranks.count(r) == n: return r
     return None
@@ -106,6 +107,7 @@ def kind(n, ranks):
 
 def two_pair(ranks):
     # 对子
+    # 如果没有，则返回 None
     pair = kind(2, ranks)
     lowpair = kind(2, list(reversed(ranks)))
     if pair and lowpair != pair:
