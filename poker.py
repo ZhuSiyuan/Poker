@@ -117,6 +117,7 @@ def two_pair(ranks):
 
 
 def compare(black, white):
+    # 比较两副牌的大小，返回比较结果
     result_black = hand_rank(black)
     result_white = hand_rank(white)
 
@@ -153,7 +154,6 @@ def test(): # 同花 & 顺子
 
 
 def main():
-
     black=['2H', '3D', '5S', '9C', 'KD']
     white=['2C', '3H', '4S', '8C', 'AH'] # 'White wins'
     print(hand_rank(black), hand_rank(white))
